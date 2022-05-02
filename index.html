@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPC 적응형</title>
+  <!-- 공통서식 -->
+  <link href="css/base.css" rel="stylesheet" type="text/css">
+  <!-- PC 화면 서식 -->
+  <link href="css/pc.css" rel="stylesheet" type="text/css">
+  <!-- 폰트어썸 주소 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+<!--    -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+
+      //원스크롤 레이아웃:헤더
+      let n = $('.gnb > ul > li').index();
+      console.log(n); //0 
+
+      let gnb = $('.gnb > ul > li');
+
+      gnb.click(function(){  //메인 메뉴를 클릭하면
+
+        n = $(this).index();  //해당 인덱스 값을 구하여 출력해본다.
+        console.log(n);  ///0,1,2,3,4
+
+        // 인덱스 번호에 해당하는 section을 화면위로 올린다.
+        $('html, body').animate({scrollTop:$('main section').eq(n+1).offset().top},500);
+
+        return false; //새로 고침 방지
+
+        
+      
+      });
+        //메인홈화면:애니메이션
+        const txtImg = $('.home_ani img:first-child');
+        // const pImg = $('.home_ani img:last-child');
+                
+        txtImg.css('opacity','0').animate({'left':'140px','opacity':'1'},1300);
+        // pImg.css('opacity','0').animate({'left':'40px','opacity':'1'},800);
+
+      function moveSlide(){
+        $('.slide > ul').animate({'margin-left':'0px'},500,function(){
+          // $('.slide > ul > li:last-child').insertBefore('.slide > ul > li:first-child');
+          $('.slide > ul').css('margin-left','0px');
+        });
+      }
+
+      //4. 3초마다 자동으로 움직이게한다.
+      //let Timer = setInterval(moveSlide,3000);'
+      
+      ///////////////////////////////////////
+
+      //1. 순서변경하기
+      $('.slide > ul > li:last-child').insertBefore('.slide > ul > li:first-child');
+
+      $('.slide > ul').css('margin-left','-1922px');
+
+      function moveSlide(){
+        $('.slide > ul').animate({'margin-left':'-1922px'},500,function(){
+          $('.slide > ul > li:first-child').insertAfter('.slide > ul > li:last-child');
+          $('.slide > ul').css('margin-left','0px');
+        });
+      }
+
+      let Timer = setInterval(moveSlide, 4000);
+
+    //qna
+    let qna = $(".qna > ul > li > a");
+
+    qna.click(function (e) {
+      if (e.target.className !== "open") {
+        $(this).next().slideDown().parent().siblings().find("p").slideUp();
+        $(this)
+          .find("i")
+          .addClass("act2")
+          .parent()
+          .parent()
+          .siblings()
+          .find("i")
+          .removeClass("act2");
+        $(e.target).parent().siblings().find("a").removeClass("open");
+        $(this).addClass("open");
+      } else {
+        $(this).removeClass("open");
+        $(this).next().slideUp();
+      }
+
+      return false;
+});
+});
+    
+  </script>
+</head>
+<body>
+ 
+  <!-- 상단 헤더 영역 -->
+  <header>
+    <div class="pagew">
+      <h1>
+        <a href="index.html" class="logo" title="상단로고">
+        <img src="./images/logo.png" alt="spc로고"></a>
+      </h1>
+
+      <nav class="gnb">
+        <ul class>
+          <li><a href="#" title="">회사소개</a></li>
+          <li><a href="#" title="">직무소개</a></li>
+          <li><a href="#" title="">인재상</a></li>
+          <li><a href="#" title="">복리후생</a></li>
+          <li><a href="#" title="">SPC 브랜드</a></li>
+        </ul>
+      </nav>
+
+        <div class="utillmenu">
+          <div class="mypage-group">
+            <i class="ico-person"></i>
+            <i class="fa-solid fa-globe"></i>
+            <label for="toggle" class="fas fa-bars"></label>
+          </div>
+        </div>
+        
+    </div>
+
+  </header>
+
+  <!-- 콘텐츠 영역 -->
+
+  <main>
+    <section class="m_home">
+      <div class="home_ani">
+        <img src="./images/m_txt.png" class="ani_txt" alt="타이틀문구">
+          <article class="slide">
+            <ul>
+              <li><a href="#" title=""><img src="./images/bg_img.jpg" alt=""></a></li>
+              <li><a href="#" title=""><img src="./images/main_bg01.jpg" alt=""></a></li>
+              <li><a href="#" title=""><img src="./images/main_bg.jpg" alt=""></a></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="m_content">
+          <p class="m_btn">입사지원하기</p>
+          <label>
+          <input type="search" class="search" placeholder="무엇을 찾으시나요?">
+          <i class="fas fa-search"></i>
+          </label>
+          <ul class="tag_list">
+            <li><a href="#">#채용절차</a></li>
+            <li><a href="#">#계약직채용</a></li>
+            <li><a href="#">#신입공고</a></li>
+          </ul>
+
+          <div class="reservation">
+            <ul>
+                <li class="bth04">
+                  <a href="#" title="신입채용">신입채용
+                    <img src="./images/icon_num.png" alt="">
+                    <span class="num-area">
+                      <span class="num">12</span>
+                      <span class="txt">건</span>
+                    </span>
+                </a>
+              </li>
+
+              <li class="bth04">
+                <a href="#" title="인턴채용">인턴채용
+                  <span class="num-area">
+                    <span class="num">1</span>
+                    <span class="txt">건</span>
+                  </span>
+              </a>
+            </li>
+
+            <li class="bth04">
+              <a href="#" title="경력채용">경력채용
+                <img src="./images/icon_num.png" alt="">
+                <span class="num-area">
+                  <span class="num">6</span>
+                  <span class="txt">건</span>
+                </span>
+            </a>
+          </li>
+
+          <li class="bth04">
+            <a href="#" title="인재DB등록">인재 DB등록
+              <span class="num-area">
+                <span class="num">&nbsp;</span>
+                <span class="txt">&nbsp;</span>
+              </span>
+          </a>
+        </li>
+                <!-- <li class="bth04"><a href="#" title="날짜 선택하기">날짜를 선택해주세요.</a></li> -->
+                <!-- <li class="bth04"><a href="#" title="인원 선택하기">인원을 입력해주세요.</a></li>
+                <li class="bth04"><a href="#" title="예약 페이지로 이동">예약하기</a></li> -->
+            </ul>
+          </div>
+
+        </div>
+        
+<!-- 
+        <div class="wrap">
+          <div class="visual-wrap">
+            <div class="side-btn-wrap">
+              <button class="btn" type="button">
+                <span class="txt">신입채용<i class="ico-new02"></i></span>
+                <span class="num-area">
+                  <span class="num">12</span>
+                  <span class="txt">건</span>
+                </span>
+              </button>
+              <button class="btn" type="button"></button>
+              <button class="btn" type="button"></button>
+              <button class="btn" type="button"></button>
+            </div>
+        </div>
+    </div> -->
+
+    </section>
+
+    <section class="m_search">
+      <div class="search_box">
+        <h2>지원하고 싶은 공고를 찾아보세요.</h2>
+
+        <ul class="search_list">
+          <li>
+            <select class="company s_btn sel_btn">
+              <option>회사</option>
+              <option>파리크라상</option>
+              <option>SPC삼립</option>
+              <option>비알코리아</option>
+              <option>MildawonCo</option>
+              <option>Ltd</option>
+             </select>
+          </li>
+          
+          <li>
+            <input type="search" class="s_btn" placeholder="직무">
+          </li>
+
+          <li>
+            <select class="type s_btn sel_btn">
+              <option>영입유형</option>
+              <option>신입</option>
+              <option>경력</option>
+              <option>인턴</option>
+              <option>해외</option>
+              <option>무관</option>
+             </select>
+          </li>
+
+          <li>
+            <div class="s__btn">&nbsp;</div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <section class="infor">
+      <div class="infor_box">
+        <h2>INFORMATION <span class="sub_t01">SPC</span></h2>
+        <h3>국민과 함께하는 일상 브랜드</h3>
+
+          <div class="infor_spc">
+            <dl class="infor_point">
+              <dt>SPC역사 정보</dt>
+              <dd>
+                <strong class="count">76</strong>
+                <span class="info_tit">SPC 역사</span>
+                <span class="">
+                  1945년에 설립되어<br>
+                  60년 동안 농민과 함께
+                </span>
+              </dd>
+            </dl>
+
+            <dl class="infor_point">
+              <dt>SPC 삼립 초봉 정보</dt>
+              <dd>
+                <strong class="count">3579</strong>
+                <span class="info_tit">SPC 삼립 초봉</span>
+                <span>
+                  경력 5년차 이내의 현직자리뷰 평균기준<br>
+                  <span class="small_tit">*만원 기준</span>
+                </span>
+              </dd>
+            </dl>
+
+            <dl class="infor_point">
+              <dt>SPC 사원 수 정보</dt>
+              <dd>
+                <strong class="count">2819</strong>
+                <span class="info_tit">SPC 사원 수</span>
+                <span>
+                  함께 일해나가는 가족
+                </span>
+              </dd>
+            </dl>
+
+            <dl class="infor_point">
+              <dt>사회공헌 참여시간 정보</dt>
+              <dd>
+                <strong class="count">173,375</strong>
+                <span class="info_tit">사회공헌 참여시간 정보</span>
+                <span>
+                  창의적 도전정신과 따뜻한 마음을 바탕으로<br>
+                  개인과 사회의 행복한 변화를
+                </span>
+              </dd>
+            </dl>
+
+          </div>
+
+          <ul class="infor_under">
+            <li>
+              <p class="ban_tit01">
+              <span>윤리경영</span>
+            </p>
+            </li>
+
+            <li>
+              <p class="ban_tit02">
+              <span>인재양성</span>
+              </p>
+            </li>
+          </ul>
+      </div>
+    </section>
+
+    <section class="category">
+      <div class="section speciality">
+        <div class="wrap">
+            <ul>
+                <li class="cont01">
+                    <a href="#" target="_blank" class="img_biz">
+                        <div class="text">
+                            <h2>IT</h2>
+                        </div>
+                        <div class="hover_content">
+                            <div class="btn"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="cont02">
+                    <a href="#" target="_blank" class="img_biz">
+                        <div class="text">
+                            <h2>행정</h2>
+                        </div>
+                        <div class="hover_content">
+                            <div class="btn"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="cont03">
+                    <a href="#" class="img_biz">
+                        <div class="text">
+                            <h2>기술</h2>
+                        </div>
+                        <div class="hover_content">
+                            <div class="btn"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="cont04">
+                    <a href="#" class="img_biz">
+                        <div class="text">
+                            <h2>상품<br>컨텐츠 개발</h2>
+                        </div>
+                        <div class="hover_content">
+                            <div class="btn"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="cont05">
+                    <a href="#" class="img_biz">
+                        <div class="text">
+                            <h2>연구개발</h2>
+                        </div>
+                        <div class="hover_content">
+                            <div class="btn"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="cont06">
+                    <a href="#" class="img_biz">
+                        <div class="text">
+                            <h2>영업<br>마케팅</h2>
+                        </div>
+                        <div class="hover_content">
+                            <div class="btn"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="cont07">
+                    <a href="#" class="img_biz">
+                        <div class="text">
+                            <h2>지원<br>전략</h2>
+                        </div>
+                        <div class="hover_content">
+                            <div class="btn"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="cont08">
+                    <a href="#" class="img_biz">
+                        <div class="text">
+                            <h2>디자인</h2>
+                        </div>
+                        <div class="hover_content">
+                            <div class="btn"></div>
+                        </div>
+                    </a>
+                </li>
+                <li class="cont09">
+                    <a href="#" class="img_biz">
+                        <div class="text"></div>
+                        <div class="hover_content">
+                            <div class="btn"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </section>
+
+    <section class="spc_person">
+      <div class="spc_m">
+        <h2>인재상</h2>
+        <!-- <hr> -->
+        <span>
+          우리는 현장 중심의 실행력과 전문성을 갖추고 SPC WAY를 실천하는 SPC형 인재를 지향합니다.<br>
+          SPC형 인재는 SPC그룹이 지향하는 Global No.1 ‘GREAT FOOD COMPANY’ 안에서 함께 성장해 나가게 됩니다.
+        </span>
+      </div>
+      
+      <div class="person_list">
+        <ul>
+          <li>
+            <div class="person_box">
+              <strong>Itegrity</strong>
+              <div class="p_icon01"></div>
+              <span class="p_text">우리는 기본에 충실하며<br>올바르게 행동한다.</span>
+            </div>
+          </li>
+
+          <li>
+            <div class="person_box">
+              <strong>Innovation</strong>
+              <div class="p_icon02"></div>
+              <span class="p_text">우리는 변화를 추구하며<br>열정적으로 도전한다.</span>
+            </div>
+          </li>
+
+          <li>
+            <div class="person_box">
+              <strong>Integration</strong>
+              <div class="p_icon03"></div>
+              <span class="p_text">우리는 다양성을 존중하며<br>유기적으로 협력한다.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="welfare">
+      <div class="wel_txt">
+        <h2>Welfare</h2>
+          <div class="w_btn">
+            <p>Read More <i class="fa-solid fa-arrow-right-long"></i></p>
+          </div>
+        <span>SPC의 복리후생과 <br>기업문화를 살펴보세요.</span>
+      </div>
+
+      <div class="wel_con">
+        <ul>
+          <li><img src="./images/con_01.jpg" alt="">
+          <p>자사 브랜드 임직원 할인 제공</p>
+          <span>할인 혜택 자세히 보기</span>
+        </li>
+          <li><img src="./images/con_02.jpg" alt="">
+          <p>Open It 임원교육</p>
+          <span>[Knock, Knock] 송시효 과장 인터뷰 </span>
+          </li>
+          <li><img src="./images/con_03.jpg" alt="">
+            <p>SPC 해피봉사단 : HBD PARTY</p>
+            <span>[Knock, Knock] 장은영 대리 인터뷰 </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="faq">
+        <article class="qna ">
+          <h2>FAQ</h2>
+          <ul class="qna-list">
+            <li>
+              <a href="#">[전형 관련] 전형 합격확인은 어떻게 하나요?<img src="./images/accordion-plus.svg" alt="자세히 보기"></a>
+              <p>당사 채용 홈페이지에서 합격자 온라인 조회만 가능합니다.</p>
+            </li>
+    
+            <li>
+              <a href="#">[면접관련] 면접 일자 변경이 가능한가요?<img src="./images/accordion-plus.svg" alt="자세히 보기"></a>
+              <p>
+                전체 지원자의 분의 수가 많아 개별 상황을 전부 반영해드리지
+                <!-- <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                못하는 점 양해 부탁드리며 일자 변경은 불가합니다.
+              </p>
+            </li>
+    
+            <li>
+              <a href="#">[지원서 작성] 해외에서 대학을 졸업하여
+                <!-- <br>&nbsp;&nbsp;&nbsp;&nbsp; -->
+                학점 산점방식이 다를 때, 어떻게 기재하여야 하나요?<img src="./images/accordion-plus.svg" alt="자세히 보기"></a>
+              <p>
+                100점 만점 기준으로 계산하여 기재하시면 됩니다.
+              </p>
+          </li>
+    
+            <li>
+              <a href="#">[어학관련] 오픽과 토익스피킹 중 어떠한 성적을 입력해야 하나요? <img src="./images/accordion-plus.svg" alt="자세히 보기"></a>
+              <p>
+                우수한 성적의 어학성적을 입력하시면 됩니다.
+              </p>
+          </li>
+    
+            <li>
+              <a href="#">[기타] 중복 지원이 가능한가요?<img src="./images/accordion-plus.svg" alt="자세히 보기"></a>
+              <p>
+                그룹사 중복지원이 가능합니다. (전형일정이 중복될 시 회사 선택 요함)
+              </p>
+            </li>
+  
+          </ul>
+          <!-- <ul class="mail">
+            <h2>SPC 채용 소식을<br> 가장 먼저 만나보세요.</h2>
+            <li>
+              <h3>이름</h3>
+              <input type="search" class="btn_name"></li>
+            <li>
+              <h3>이메일</h3>
+              <input type="search" class="btn_e-mail"></li>
+          </ul> -->
+         </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- 푸터 영역 -->
+  <footer>
+    <div class="f_top">
+      <nav class="f_nav">
+        <ul class="f_lnb">
+          <li><a href="#" title="SPC 그룹">SPC&nbsp;그룹</a></li>
+          <li><a href="#" title="이용약관">이용약관</a></li>
+          <li><a href="#" title="개인정보처리방침">개인정보처리방침</a></li>
+          <li><a href="#" title="이메일무단수집거부">이메일무단수집거부</a></li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="f_info">
+      <dl>
+        <dt class="no_title">&nbsp;</dt>
+        <dd class="sns">
+          <a href="#" title="오픈카톡"><img src="./images/icon_kakao.png" alt="오픈카톡"></a>
+          <a href="#" title="페이스북"><img src="./images/icon_fb.png" alt="페이스북"></a>
+          <a href="#" title="인스타그램"><img src="./images/icon_insta.png" alt="인스타그램"></a>
+          <a href="#" title="유튜브"><img src="./images/icon_youtube.png" alt=""></a>
+        </dd>
+      </dl>
+
+    </div>
+    <address>
+      <p class="a_info">
+        서울시 서초구 양재동 남부순환로 2620 (양재동 11-149) SPC그룹 
+        <br>TEL 02-1234-5678 사업자등록번호 215-86-67152
+        <br>통신판매업 : 제 2014-서울서초-0593호 <br>
+        &copy;Copyright SPC All rights reserverd.</p>
+
+    </address>
+  </footer>
+  
+</body>
+</html>
